@@ -1,6 +1,6 @@
 # TodoMVC using TypeScript & React
 
-This project is a clone of TodoMVC from [https://todomvc.com/](https://todomvc.com/) implemented using TypeScript & React.
+This project is a clone of TodoMVC from [https://todomvc.com/](https://todomvc.com/) implemented using TypeScript & React (style is copied from the website).
 
 # Getting Started with Create React App
 
