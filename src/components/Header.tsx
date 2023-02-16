@@ -4,17 +4,21 @@ import { useTodoContext } from "contexts/todosContext";
 
 export const Header = () => {
   const newTodoRef = useRef<HTMLInputElement>(null);
-  const [state, dispatch] = useTodoContext();
+  const { state, addTodo } = useTodoContext();
 
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     // If the user presses the "Enter" key on the keyboard
 
     if (event.key === ENTER_KEY) {
       event.preventDefault();
-      const newTodo = newTodoRef?.current?.value.trim() ?? "";
-      const isTextPresent = newTodo.length > 0;
+      const newTodoText = newTodoRef?.current?.value.trim() ?? "";
+      const isTextPresent = newTodoText.length > 0;
       if (isTextPresent) {
-        alert(`You entered ${newTodo}`);
+        console.log(`You entered ${newTodoText}`);
+        addTodo(newTodoText);
+        if (newTodoRef === null || newTodoRef.current === null)
+          throw new Error("Input not found");
+        newTodoRef.current.value = "";
       }
     }
   }
