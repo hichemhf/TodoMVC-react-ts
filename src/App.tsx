@@ -9,7 +9,7 @@ function App() {
       <div className="todoapp">
         <Header />
         <Main />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </TodosProvider>
   );

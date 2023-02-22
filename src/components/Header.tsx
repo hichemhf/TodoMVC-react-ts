@@ -1,10 +1,10 @@
 import { useRef, KeyboardEvent } from "react";
-import { ENTER_KEY } from "helpers/keycodes";
+import { ENTER_KEY } from "utils/keycodes";
 import { useTodoContext } from "contexts/todosContext";
 
 export const Header = () => {
   const newTodoRef = useRef<HTMLInputElement>(null);
-  const { state, addTodo } = useTodoContext();
+  const { addTodo } = useTodoContext();
 
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     // If the user presses the "Enter" key on the keyboard
@@ -16,8 +16,8 @@ export const Header = () => {
       if (isTextPresent) {
         console.log(`You entered ${newTodoText}`);
         addTodo(newTodoText);
-        if (newTodoRef === null || newTodoRef.current === null)
-          throw new Error("Input not found");
+        // if (newTodoRef === null || newTodoRef.current === null)
+        if (!newTodoRef.current) throw new Error("newTodoRef is not assigned");
         newTodoRef.current.value = "";
       }
     }

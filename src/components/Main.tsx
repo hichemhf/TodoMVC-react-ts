@@ -1,9 +1,10 @@
 import { useTodoContext } from "contexts/todosContext";
-import { ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
+import { Todo } from "components/Todo";
 
 export const Main = () => {
-  const { state, toggleAllTodos } = useTodoContext();
-
+  const { state, toggleAllCompleted } = useTodoContext();
+  const [editingId, setEditingId] = useState<string | null>(null);
   const hiddenClassToggle = state.todos.length === 0 ? "hidden" : "";
   const getVisibleTodo = () => {
     if (state.filter === "active") {
@@ -16,10 +17,9 @@ export const Main = () => {
   };
   const visibleTodo = getVisibleTodo();
   const isAllTodosSelected = state.todos.every((todo) => todo.isCompleted);
-  const onToggleAllTodos = (event: ChangeEvent<HTMLInputElement>) => {
-    toggleAllTodos(event.target.checked);
+  const onToggleAllCompleted = (event: ChangeEvent<HTMLInputElement>) => {
+    toggleAllCompleted(event.target.checked);
   };
-  const onToggleTodo = () => {};
 
   return (
     <section className={`main ${hiddenClassToggle}`}>
@@ -28,26 +28,18 @@ export const Main = () => {
         className="toggle-all"
         id="toggle-all"
         checked={isAllTodosSelected}
-        onChange={onToggleAllTodos}
+        onChange={onToggleAllCompleted}
       />
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
         {visibleTodo.map((todo) => {
           return (
-            <li key={todo.id}>
-              <div>
-                <input
-                  type="checkbox"
-                  className="toggle"
-                  id="toggle"
-                  checked={todo.isCompleted}
-                  onChange={onToggleTodo}
-                />
-                <label htmlFor="toggle">{todo.text}</label>
-                <button className="destroy"></button>
-              </div>
-              <input type="text" className="edit" id="" />
-            </li>
+            <Todo
+              key={todo.id}
+              todo={todo}
+              isEditing={editingId === todo.id}
+              setEditingId={setEditingId}
+            />
           );
         })}
       </ul>
