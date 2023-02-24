@@ -1,4 +1,4 @@
-import { useReducer, useCallback } from "react";
+import { useReducer, useCallback, useEffect } from "react";
 import {
   StateType,
   TodoContextType,
@@ -6,6 +6,7 @@ import {
   ReducerActionTypesT,
   updatedTodoType,
 } from "utils/types";
+import { useLocalStorage } from "./useLocalStorage";
 
 //* types declaration
 export const REDUCER_ACTION_TYPES = {
@@ -114,7 +115,9 @@ const reducer = (state: StateType, action: ReducerAction) => {
 };
 
 export const useTodosReducer = (initialState: StateType): TodoContextType => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [storedState, setStoredState] = useLocalStorage("state", initialState);
+
+  const [state, dispatch] = useReducer(reducer, storedState);
   const addTodo = useCallback((newTodoText: string) => {
     dispatch({ type: REDUCER_ACTION_TYPES.ADD_TODO, payload: newTodoText });
   }, []);
@@ -153,6 +156,10 @@ export const useTodosReducer = (initialState: StateType): TodoContextType => {
       type: REDUCER_ACTION_TYPES.CLEAR_COMPLETED,
     });
   }, []);
+
+  useEffect(() => {
+    setStoredState(state);
+  }, [state, setStoredState]);
 
   return {
     state,
