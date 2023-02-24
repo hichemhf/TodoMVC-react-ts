@@ -13,9 +13,9 @@ export type StateType = {
     filter: TodosFilterType;
   };
 
-  // type updatedTodoType = {
-  //   todoId:string; newText:string;
-  // }
+export type updatedTodoType = {
+    todoId:string; newText:string;
+  }
 
 
 export type TodoContextType = {
@@ -23,12 +23,13 @@ export type TodoContextType = {
     addTodo: (newTodoText: string) => void;
     toggleAllCompleted: (toggleAll: boolean) => void;
     changeFilter: (filter: TodosFilterType) => void;
-    updateTodo: ({todoId,newText}:{todoId:string, newText:string}) => void;
-    //updateTodo: (updatedTodo:updatedTodoType) => void;
-    // updateTodo: ({id:todoId,text:newText}:Omit<TodoType,"isCompleted">) => void;
+    updateTodo: ({todoId,newText}:updatedTodoType) => void;
     toggleTodoCompleted: (todoId: string) => void;
     removeTodo: (todoId: string) => void;
+    clearCompleted: () => void;
   };
+  // updateTodo: ({todoId,newText}:{todoId:string, newText:string}) => void;
+  // updateTodo: ({id:todoId,text:newText}:Omit<TodoType,"isCompleted">) => void;
 
 
 

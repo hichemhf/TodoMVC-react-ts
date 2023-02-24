@@ -4,6 +4,7 @@ import {
   TodoContextType,
   TodosFilterType,
   ReducerActionTypesT,
+  updatedTodoType,
 } from "utils/types";
 
 //* types declaration
@@ -14,6 +15,7 @@ export const REDUCER_ACTION_TYPES = {
   TOGGLE_TODO: "toggle_todo",
   TOGGLE_ALL: "toggle_all",
   CHANGE_FILTER: "change_filter",
+  CLEAR_COMPLETED: "clear_completed",
 } as const;
 
 type ReducerAction =
@@ -22,12 +24,20 @@ type ReducerAction =
         ReducerActionTypesT,
         | typeof REDUCER_ACTION_TYPES.UPDATE_TODO
         | typeof REDUCER_ACTION_TYPES.TOGGLE_ALL
+        | typeof REDUCER_ACTION_TYPES.CHANGE_FILTER
       >;
       payload: string;
     }
   | {
       type: typeof REDUCER_ACTION_TYPES.UPDATE_TODO;
       payload: { todoId: string; newText: string };
+    }
+  | {
+      type: typeof REDUCER_ACTION_TYPES.CHANGE_FILTER;
+      payload: TodosFilterType;
+    }
+  | {
+      type: typeof REDUCER_ACTION_TYPES.CLEAR_COMPLETED;
     }
   | {
       type: typeof REDUCER_ACTION_TYPES.TOGGLE_ALL;
@@ -73,28 +83,29 @@ const reducer = (state: StateType, action: ReducerAction) => {
         }
         return todo;
       });
-      return { ...state, todos: updatedTodos } as StateType;
+      return { ...state, todos: updatedTodos };
     }
     case REDUCER_ACTION_TYPES.CHANGE_FILTER: {
-      return { ...state, filter: action.payload as TodosFilterType };
-
-      // return { ...state, filter: action.payload } as StateType;
+      return { ...state, filter: action.payload };
     }
     case REDUCER_ACTION_TYPES.UPDATE_TODO: {
-      const payload = action.payload as { todoId: string; newText: string };
       const updatedTodos = state.todos.map((todo) => {
-        if (todo.id === payload.todoId) {
-          return { ...todo, text: payload.newText };
+        if (todo.id === action.payload.todoId) {
+          return { ...todo, text: action.payload.newText };
         }
         return todo;
       });
-      return { ...state, todos: updatedTodos } as StateType;
+      return { ...state, todos: updatedTodos };
     }
     case REDUCER_ACTION_TYPES.REMOVE_TODO: {
       const updatedTodos = state.todos.filter(
         (todo) => todo.id !== action.payload
       );
-      return { ...state, todos: updatedTodos } as StateType;
+      return { ...state, todos: updatedTodos };
+    }
+    case REDUCER_ACTION_TYPES.CLEAR_COMPLETED: {
+      const updatedTodos = state.todos.filter((todo) => !todo.isCompleted);
+      return { ...state, todos: updatedTodos };
     }
     default: {
       throw new Error("Unidentified reducer action type");
@@ -125,19 +136,21 @@ export const useTodosReducer = (initialState: StateType): TodoContextType => {
       payload: filter,
     });
   }, []);
-  const updateTodo = useCallback(
-    ({ todoId, newText }: { todoId: string; newText: string }) => {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.UPDATE_TODO,
-        payload: { todoId, newText },
-      });
-    },
-    []
-  );
+  const updateTodo = useCallback(({ todoId, newText }: updatedTodoType) => {
+    dispatch({
+      type: REDUCER_ACTION_TYPES.UPDATE_TODO,
+      payload: { todoId, newText },
+    });
+  }, []);
   const removeTodo = useCallback((todoId: string) => {
     dispatch({
       type: REDUCER_ACTION_TYPES.REMOVE_TODO,
       payload: todoId,
+    });
+  }, []);
+  const clearCompleted = useCallback(() => {
+    dispatch({
+      type: REDUCER_ACTION_TYPES.CLEAR_COMPLETED,
     });
   }, []);
 
@@ -149,6 +162,7 @@ export const useTodosReducer = (initialState: StateType): TodoContextType => {
     updateTodo,
     toggleTodoCompleted,
     removeTodo,
+    clearCompleted,
   };
   // return [state, addTodo, toggleAllCompleted] as const ;
 };

@@ -36,6 +36,7 @@ export const TodosProvider = ({ children }: TodosProviderPropsType) => {
     updateTodo,
     toggleTodoCompleted,
     removeTodo,
+    clearCompleted,
   } = useTodosReducer(initialState);
 
   return (
@@ -48,6 +49,7 @@ export const TodosProvider = ({ children }: TodosProviderPropsType) => {
         updateTodo,
         toggleTodoCompleted,
         removeTodo,
+        clearCompleted,
       }}
     >
       {children}
