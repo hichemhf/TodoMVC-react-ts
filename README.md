@@ -2,6 +2,8 @@
 
 This project is a clone of TodoMVC from [https://todomvc.com/](https://todomvc.com/) implemented using TypeScript & React (style is copied from the website).
 
+Open in [codesandbox](https://codesandbox.io/p/github/hichemhf/TodoMVC-react-ts/draft/divine-glade?workspaceId=1b5c8c33-46bb-4c65-a9f6-ab61cd053c63&file=%2FREADME.md&selection=%5B%7B%22endColumn%22%3A23%2C%22endLineNumber%22%3A5%2C%22startColumn%22%3A23%2C%22startLineNumber%22%3A5%7D%5D&workspace=%257B%2522activeFileId%2522%253A%2522cleg7ujvv0001g2ib95tddrke%2522%252C%2522openFiles%2522%253A%255B%2522%252FREADME.md%2522%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522spaces%2522%253A%257B%2522cleg7uqiy000x206clue2zj1o%2522%253A%257B%2522key%2522%253A%2522cleg7uqiy000x206clue2zj1o%2522%252C%2522name%2522%253A%2522Default%2522%252C%2522devtools%2522%253A%255B%257B%2522type%2522%253A%2522PREVIEW%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522port%2522%253A3000%252C%2522key%2522%253A%2522cleg7v5h4008p206ctylzlfl8%2522%252C%2522isMinimized%2522%253Afalse%257D%252C%257B%2522type%2522%253A%2522TASK_LOG%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522key%2522%253A%2522cleg7v3cu0068206cv995ayfn%2522%252C%2522isMinimized%2522%253Atrue%257D%255D%257D%257D%252C%2522currentSpace%2522%253A%2522cleg7uqiy000x206clue2zj1o%2522%252C%2522spacesOrder%2522%253A%255B%2522cleg7uqiy000x206clue2zj1o%2522%255D%252C%2522hideCodeEditor%2522%253Afalse%257D)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
