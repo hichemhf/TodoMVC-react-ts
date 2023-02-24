@@ -5,7 +5,7 @@ import { Todo } from "components/Todo";
 export const Main = () => {
   const { state, toggleAllCompleted } = useTodoContext();
   const [editingId, setEditingId] = useState<string | null>(null);
-  const hiddenClassToggle = state.todos.length === 0 ? "hidden" : "";
+  const emptyTodosHiddenClass = state.todos.length === 0 ? "hidden" : "";
   const getVisibleTodo = () => {
     if (state.filter === "active") {
       return state.todos.filter((todo) => !todo.isCompleted);
@@ -22,7 +22,7 @@ export const Main = () => {
   };
 
   return (
-    <section className={`main ${hiddenClassToggle}`}>
+    <section className={`main ${emptyTodosHiddenClass}`}>
       <input
         type="checkbox"
         className="toggle-all"

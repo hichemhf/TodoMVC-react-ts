@@ -14,7 +14,6 @@ export const Header = () => {
       const newTodoText = newTodoRef?.current?.value.trim() ?? "";
       const isTextPresent = newTodoText.length > 0;
       if (isTextPresent) {
-        console.log(`You entered ${newTodoText}`);
         addTodo(newTodoText);
         // if (newTodoRef === null || newTodoRef.current === null)
         if (!newTodoRef.current) throw new Error("newTodoRef is not assigned");

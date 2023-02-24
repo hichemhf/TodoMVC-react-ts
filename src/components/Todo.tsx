@@ -1,5 +1,5 @@
 import { useTodoContext } from "contexts/todosContext";
-import { useState, MouseEvent, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { ENTER_KEY, ESCAPE_KEY } from "utils/keycodes";
 import { TodoType } from "utils/types";
 
@@ -13,18 +13,22 @@ export const Todo = ({ todo, isEditing, setEditingId }: TodoPropsType) => {
   const { updateTodo, toggleTodoCompleted, removeTodo } = useTodoContext();
 
   const [todoText, setTodoText] = useState(todo.text);
+  const todoCompletedClass = todo.isCompleted ? "completed" : "";
+  const editingModeClass = isEditing ? "editing" : "";
+
   const onToggleCompleted = () => {
     toggleTodoCompleted(todo.id);
   };
+
   const handleRemoveTodo = () => {
     removeTodo(todo.id);
   };
-  const isTodoCompleted = todo.isCompleted ? "completed" : "";
-  const editingModeClass = isEditing ? "editing" : "";
+
   const startEditing = () => {
     setEditingId(todo.id);
     setTodoText(todo.text);
   };
+
   const handleEdit = (event: ChangeEvent<HTMLInputElement>) => {
     setTodoText(event.target.value);
   };
@@ -37,7 +41,6 @@ export const Todo = ({ todo, isEditing, setEditingId }: TodoPropsType) => {
 
       const isTextPresent = todoText.length > 0;
       if (isTextPresent) {
-        console.log(`You entered ${todoText}`);
         updateTodo({ todoId: todo.id, newText: todoText });
         setEditingId(null);
       }
@@ -49,7 +52,7 @@ export const Todo = ({ todo, isEditing, setEditingId }: TodoPropsType) => {
   }
 
   return (
-    <li className={`${isTodoCompleted} ${editingModeClass}`}>
+    <li className={`${todoCompletedClass} ${editingModeClass}`}>
       {/* key={todo.id} */}
       <div className="view">
         <input
@@ -70,6 +73,7 @@ export const Todo = ({ todo, isEditing, setEditingId }: TodoPropsType) => {
           value={todoText}
           onChange={handleEdit}
           onKeyDown={handleKeyDown}
+          onBlur={() => setEditingId(null)}
           autoFocus
         />
       )}
