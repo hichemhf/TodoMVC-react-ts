@@ -24,8 +24,9 @@ type ReducerAction =
       type: Exclude<
         ReducerActionTypesT,
         | typeof REDUCER_ACTION_TYPES.UPDATE_TODO
-        | typeof REDUCER_ACTION_TYPES.TOGGLE_ALL
         | typeof REDUCER_ACTION_TYPES.CHANGE_FILTER
+        | typeof REDUCER_ACTION_TYPES.CLEAR_COMPLETED
+        | typeof REDUCER_ACTION_TYPES.TOGGLE_ALL
       >;
       payload: string;
     }
