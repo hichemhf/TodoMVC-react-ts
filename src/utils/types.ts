@@ -1,4 +1,4 @@
-import { REDUCER_ACTION_TYPES } from "hooks/useTodosReducer";
+import { REDUCER_ACTION_TYPES } from "utils/constants";
 
 export type TodoType = {
     id: string;
@@ -35,6 +35,6 @@ export type TodoContextType = {
 
 type ReducerActionTypesValues<T> = T[keyof T];
 
-export type ReducerActionTypesT = ReducerActionTypesValues<
+export type ReducerActionTypesType = ReducerActionTypesValues<
   typeof REDUCER_ACTION_TYPES
 >;

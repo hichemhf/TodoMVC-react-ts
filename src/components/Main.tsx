@@ -5,7 +5,7 @@ import { Todo } from "components/Todo";
 export const Main = () => {
   const { state, toggleAllCompleted } = useTodoContext();
   const [editingId, setEditingId] = useState<string | null>(null);
-  const emptyTodosHiddenClass = state.todos.length === 0 ? "hidden" : "";
+  const isTodosEmpty = state.todos.length === 0;
   const getVisibleTodo = () => {
     if (state.filter === "active") {
       return state.todos.filter((todo) => !todo.isCompleted);
@@ -22,27 +22,31 @@ export const Main = () => {
   };
 
   return (
-    <section className={`main ${emptyTodosHiddenClass}`}>
-      <input
-        type="checkbox"
-        className="toggle-all"
-        id="toggle-all"
-        checked={isAllTodosSelected}
-        onChange={onToggleAllCompleted}
-      />
-      <label htmlFor="toggle-all">Mark all as complete</label>
-      <ul className="todo-list">
-        {visibleTodo.map((todo) => {
-          return (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              isEditing={editingId === todo.id}
-              setEditingId={setEditingId}
-            />
-          );
-        })}
-      </ul>
-    </section>
+    <>
+      {!isTodosEmpty && (
+        <section className={`main`}>
+          <input
+            type="checkbox"
+            className="toggle-all"
+            id="toggle-all"
+            checked={isAllTodosSelected}
+            onChange={onToggleAllCompleted}
+          />
+          <label htmlFor="toggle-all">Mark all as complete</label>
+          <ul className="todo-list">
+            {visibleTodo.map((todo) => {
+              return (
+                <Todo
+                  key={todo.id}
+                  todo={todo}
+                  isEditing={editingId === todo.id}
+                  setEditingId={setEditingId}
+                />
+              );
+            })}
+          </ul>
+        </section>
+      )}
+    </>
   );
 };

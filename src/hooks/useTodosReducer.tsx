@@ -3,26 +3,18 @@ import {
   StateType,
   TodoContextType,
   TodosFilterType,
-  ReducerActionTypesT,
+  ReducerActionTypesType,
   updatedTodoType,
 } from "utils/types";
 import { useLocalStorage } from "./useLocalStorage";
+import { REDUCER_ACTION_TYPES } from "utils/constants";
 
 //* types declaration
-export const REDUCER_ACTION_TYPES = {
-  ADD_TODO: "add_todo",
-  UPDATE_TODO: "update_todo",
-  REMOVE_TODO: "remove_todo",
-  TOGGLE_TODO: "toggle_todo",
-  TOGGLE_ALL: "toggle_all",
-  CHANGE_FILTER: "change_filter",
-  CLEAR_COMPLETED: "clear_completed",
-} as const;
 
 type ReducerAction =
   | {
       type: Exclude<
-        ReducerActionTypesT,
+        ReducerActionTypesType,
         | typeof REDUCER_ACTION_TYPES.UPDATE_TODO
         | typeof REDUCER_ACTION_TYPES.CHANGE_FILTER
         | typeof REDUCER_ACTION_TYPES.CLEAR_COMPLETED
