@@ -74,7 +74,7 @@ body {
     font-size: 80px;
     font-weight: 200;
     text-align: center;
-    color: #b83f45;
+    color: rgba(175, 47, 47, 0.25);
     -webkit-text-rendering: optimizeLegibility;
     -moz-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility;
@@ -260,6 +260,7 @@ body {
 }
 
 .footer {
+    color: #777;
     padding: 10px 15px;
     height: 20px;
     text-align: center;

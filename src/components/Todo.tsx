@@ -1,7 +1,7 @@
 import { useTodoContext } from "contexts/todosContext";
 import { useState, ChangeEvent, KeyboardEvent } from "react";
-import { ENTER_KEY, ESCAPE_KEY } from "utils/keycodes";
-import { TodoType } from "utils/types";
+import { ENTER_KEY, ESCAPE_KEY } from "helpers/keycodes";
+import { TodoType } from "helpers/types";
 
 type TodoPropsType = {
   todo: TodoType;

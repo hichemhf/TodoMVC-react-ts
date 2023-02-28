@@ -6,11 +6,13 @@ import { Footer } from "components/Footer";
 function App() {
   return (
     <TodosProvider>
-      <div className="todoapp">
-        <Header />
-        <Main />
-        <Footer />
-      </div>
+      <section className="todoapp">
+        <div>
+          <Header />
+          <Main />
+          <Footer />
+        </div>
+      </section>
     </TodosProvider>
   );
 }

@@ -1,7 +1,7 @@
 import { useTodosReducer } from "hooks/useTodosReducer";
 import { ReactNode, createContext, useContext } from "react";
-import { ALL_TODOS } from "utils/constants";
-import { StateType, TodoContextType } from "utils/types";
+import { ALL_TODOS } from "helpers/constants";
+import { StateType, TodoContextType } from "helpers/types";
 
 //* types declaration
 

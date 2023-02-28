@@ -1,7 +1,7 @@
 import { useTodoContext } from "contexts/todosContext";
 import { useMemo } from "react";
-import { ACTIVE_TODOS, ALL_TODOS, COMPLETED_TODOS } from "utils/constants";
-import { TodosFilterType } from "utils/types";
+import { ACTIVE_TODOS, ALL_TODOS, COMPLETED_TODOS } from "helpers/constants";
+import { TodosFilterType } from "helpers/types";
 
 export const Footer = () => {
   const { state, changeFilter, clearCompleted } = useTodoContext();

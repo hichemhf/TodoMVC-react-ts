@@ -5,9 +5,9 @@ import {
   TodosFilterType,
   ReducerActionTypesType,
   updatedTodoType,
-} from "utils/types";
+} from "helpers/types";
 import { useLocalStorage } from "./useLocalStorage";
-import { REDUCER_ACTION_TYPES } from "utils/constants";
+import { REDUCER_ACTION_TYPES } from "helpers/constants";
 
 //* types declaration
 

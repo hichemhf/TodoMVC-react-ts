@@ -1,5 +1,5 @@
 import { useRef, KeyboardEvent } from "react";
-import { ENTER_KEY } from "utils/keycodes";
+import { ENTER_KEY } from "helpers/keycodes";
 import { useTodoContext } from "contexts/todosContext";
 
 export const Header = () => {
@@ -23,7 +23,7 @@ export const Header = () => {
   }
 
   return (
-    <header>
+    <header className="header">
       <h1>todos</h1>
       <input
         className="new-todo"
